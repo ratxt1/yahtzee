@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<section>
+  <Dice
+    dice={
+      Array [
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+        undefined,
+      ]
+    }
+    locked={
+      Array [
+        false,
+        false,
+        false,
+        false,
+        false,
+      ]
+    }
+    toggleLocked={[Function]}
+  />
+  <button
+    className="Game-reroll"
+    disabled={false}
+    onClick={[Function]}
+  >
+    3
+     Rerolls Left
+  </button>
+  <ScoreTable
+    doScore={[Function]}
+    scores={
+      Object {
+        "chance": undefined,
+        "fives": undefined,
+        "fourOfKind": undefined,
+        "fours": undefined,
+        "fullHouse": undefined,
+        "largeStraight": undefined,
+        "ones": undefined,
+        "sixes": undefined,
+        "smallStraight": undefined,
+        "threeOfKind": undefined,
+        "threes": undefined,
+        "twos": undefined,
+        "yahtzee": undefined,
+      }
+    }
+  />
+</section>
+`;

@@ -31,16 +31,21 @@ class Game extends Component {
     };
     this.roll = this.roll.bind(this);
     this.doScore = this.doScore.bind(this);
+    this.toggleLocked =this.toggleLocked.bind(this);
   }
 
   roll(evt) {
     // roll dice whose indexes are in reroll
-    this.setState(st => ({
-      dice: st.dice.map(
-        (d, i) => st.locked[i] ? d : Math.ceil(Math.random() * 6)),
-      locked: st.rollsLeft > 1 ? st.locked : Array(NUM_DICE).fill(true),
-      rollsLeft: st.rollsLeft - 1,
-    }));
+    this.setState(st => {
+      if (st.rollsLeft !== 0) {
+        return {
+          dice: st.dice.map(
+            (d, i) => st.locked[i] ? d : Math.ceil(Math.random() * 6)),
+          locked: st.rollsLeft > 1 ? st.locked : Array(NUM_DICE).fill(true),
+          rollsLeft: st.rollsLeft - 1,
+        }
+      } else return {}
+    });
   }
 
   toggleLocked(idx) {

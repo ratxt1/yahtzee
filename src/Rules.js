@@ -60,14 +60,35 @@ class SumDistro extends Rule {
 
 /** Check if full house (3-of-kind and 2-of-kind) */
 
-class FullHouse {
-  // TODO
+class FullHouse extends Rule {
+  evalRoll(dice) {
+    const frequencies = new Set(this.freq(dice))
+    return (frequencies.has(3) && frequencies.has(2)) ? this.score: 0
+  }
 }
 
 /** Check for small straights. */
 
-class SmallStraight {
-  // TODO
+class SmallStraight extends Rule {
+  evalRoll(dice) {
+    // FIX NAMES FOR CODE REVIEW
+    const d = new Set(dice)
+    const s = Array.from(d).sort();
+
+    let numInARow;
+
+    for (let i = 0; i < s.length; i++) {
+      if(s[i] === s[i - 1] + 1) {
+        numInARow++
+        if (numInARow === 4) {
+          return this.score;
+        }
+      } else {
+        numInARow = 1;
+      }
+    }
+    return 0;
+  } 
 }
 
 /** Check for large straights. */
@@ -103,10 +124,10 @@ const threeOfKind = new SumDistro({ count: 3 });
 const fourOfKind = new SumDistro({ count: 4 });
 
 // full house scores as flat 25
-const fullHouse = "TODO";
+const fullHouse = new FullHouse({ score: 25 });
 
 // small/large straights score as 30/40
-const smallStraight = "TODO";
+const smallStraight = new SmallStraight({ score: 30 });
 const largeStraight = new LargeStraight({ score: 40 });
 
 // yahtzee scores as 50
@@ -114,6 +135,9 @@ const yahtzee = new Yahtzee({ score: 50 });
 
 // for chance, can view as some of all dice, requiring at least 0 of a kind
 const chance = new SumDistro({ count: 0 });
+
+// console.log(threeOfKind.evalRoll([1, 1, 1, 2, 2]));
+// console.log(smallStraight.evalRoll([1,2,4,5,3]))
 
 export {
   ones,
