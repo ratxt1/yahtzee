@@ -44,8 +44,7 @@ class Game extends Component {
     this.setState(st => ({
       dice: st.dice.map(
         (d, i) => st.locked[i] ? d : Math.ceil(Math.random() * 6)),
-      locked: st.rollsLeft > 1 ? st.locked : Array(NUM_DICE).fill(true),
-      rollsLeft: st.rollsLeft - 1,
+      locked: st.rollsLeft > 0 ? st.locked : Array(NUM_DICE).fill(true),
       diceRolling: false
     }));
   }
@@ -53,7 +52,8 @@ class Game extends Component {
   handleDieRoll(evt) {
     // toggle class to shake die on roll
     this.setState(st => ({
-      diceRolling: true
+      diceRolling: true,
+      rollsLeft: st.rollsLeft - 1
     }));
     setTimeout(this.roll, 500)
   }
@@ -105,24 +105,33 @@ class Game extends Component {
     this.handleDieRoll();
   }
 
-  render() {
+  makeDiceDisplay() {
     return (
-      <section>
-        <div className={this.state.diceRolling ? "Die-shake": ""}>
+      <div>
+        <div className={this.state.diceRolling ? "Die-shake" : ""}>
           <Dice dice={this.state.dice}
             locked={this.state.locked}
             toggleLocked={!this.state.locked.every(x => x) ? this.toggleLocked : () => { }}
           />
         </div>
-
         <button
           className="Game-reroll"
-          disabled={this.state.locked.every(x => x)}
+          disabled={this.state.locked.every(x => x) || this.state.diceRolling}
           onClick={this.handleDieRoll}>
           {this.state.rollsLeft} Rerolls Left
         </button>
+      </div>
+    )
+  }
+
+  render() {
+    const isGameOver = (Object.values(this.state.scores).every(s => s !== undefined))
+    const diceDisplay = this.makeDiceDisplay()
+    const playAgain = <button className="Game-play-again" onClick={this.reset}>Play Again?</button>
+    return (
+      <section>
+        {isGameOver ? playAgain : diceDisplay}
         <ScoreTable doScore={this.doScore} scores={this.state.scores} diceRolling={this.state.diceRolling} />
-        {(Object.values(this.state.scores).every(s => s !== undefined)) ? <button onClick={this.reset}>Play Again?</button> : null}
       </section >
     );
   }
