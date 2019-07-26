@@ -62,8 +62,8 @@ class SumDistro extends Rule {
 
 class FullHouse extends Rule {
   evalRoll(dice) {
-    const frequencies = new Set(this.freq(dice))
-    return (frequencies.has(3) && frequencies.has(2)) ? this.score: 0
+    const frequencies = this.freq(dice)
+    return (frequencies.includes(3) && frequencies.includes(2)) ? this.score: 0
   }
 }
 
@@ -71,19 +71,21 @@ class FullHouse extends Rule {
 
 class SmallStraight extends Rule {
   evalRoll(dice) {
-    // FIX NAMES FOR CODE REVIEW
-    const d = new Set(dice)
-    const s = Array.from(d).sort();
+    const STRAIGHT_LENGTH = 4;
+    const diceSet = new Set(dice);
+    const sortedNonUniqueDice = Array.from(diceSet).sort();
 
     let numInARow;
-
-    for (let i = 0; i < s.length; i++) {
-      if(s[i] === s[i - 1] + 1) {
+    
+    // Check for nums in a row, if ever 4 in a row return score
+    for (let i = 0; i < sortedNonUniqueDice.length; i++) {
+      if(sortedNonUniqueDice[i] === sortedNonUniqueDice[i - 1] + 1) {
         numInARow++
-        if (numInARow === 4) {
+        if (numInARow === STRAIGHT_LENGTH) {
           return this.score;
         }
       } else {
+        // Reset row count
         numInARow = 1;
       }
     }
@@ -135,9 +137,6 @@ const yahtzee = new Yahtzee({ score: 50 });
 
 // for chance, can view as some of all dice, requiring at least 0 of a kind
 const chance = new SumDistro({ count: 0 });
-
-// console.log(threeOfKind.evalRoll([1, 1, 1, 2, 2]));
-// console.log(smallStraight.evalRoll([1,2,4,5,3]))
 
 export {
   ones,

@@ -2,36 +2,41 @@
 
 exports[`matches snapshot 1`] = `
 <section>
-  <Dice
-    dice={
-      Array [
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-      ]
-    }
-    locked={
-      Array [
-        false,
-        false,
-        false,
-        false,
-        false,
-      ]
-    }
-    toggleLocked={[Function]}
-  />
+  <div
+    className=""
+  >
+    <Dice
+      dice={
+        Array [
+          6,
+          6,
+          6,
+          6,
+          6,
+        ]
+      }
+      locked={
+        Array [
+          false,
+          false,
+          false,
+          false,
+          false,
+        ]
+      }
+      toggleLocked={[Function]}
+    />
+  </div>
   <button
     className="Game-reroll"
     disabled={false}
     onClick={[Function]}
   >
-    3
+    2
      Rerolls Left
   </button>
   <ScoreTable
+    diceRolling={false}
     doScore={[Function]}
     scores={
       Object {

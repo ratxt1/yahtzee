@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="Dice"
+>
+  <Die
+    idx={0}
+    key="0"
+    locked={true}
+    toggleLocked={[Function]}
+    val={1}
+  />
+  <Die
+    idx={1}
+    key="1"
+    locked={false}
+    toggleLocked={[Function]}
+    val={2}
+  />
+</div>
+`;

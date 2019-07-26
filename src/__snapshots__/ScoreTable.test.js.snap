@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  className="ScoreTable"
+>
+  <section
+    className="ScoreTable-section"
+  >
+    <RuleColumn
+      name="Upper"
+      rows={
+        Array [
+          Object {
+            "doScore": [Function],
+            "name": "Ones",
+            "score": undefined,
+          },
+          Object {
+            "doScore": [Function],
+            "name": "Twos",
+            "score": undefined,
+          },
+          Object {
+            "doScore": [Function],
+            "name": "Threes",
+            "score": undefined,
+          },
+          Object {
+            "doScore": [Function],
+            "name": "Fours",
+            "score": undefined,
+          },
+          Object {
+            "doScore": [Function],
+            "name": "Fives",
+            "score": undefined,
+          },
+          Object {
+            "doScore": [Function],
+            "name": "Sixes",
+            "score": undefined,
+          },
+        ]
+      }
+    />
+  </section>
+  <section
+    className="ScoreTable-section ScoreTable-section-lower"
+  >
+    <RuleColumn
+      name="Lower"
+      rows={
+        Array [
+          Object {
+            "doScore": [Function],
+            "name": "Three of a Kind",
+            "score": undefined,
+          },
+          Object {
+            "doScore": [Function],
+            "name": "Four of a Kind",
+            "score": undefined,
+          },
+          Object {
+            "doScore": [Function],
+            "name": "Full House",
+            "score": undefined,
+          },
+          Object {
+            "doScore": [Function],
+            "name": "Small Straight",
+            "score": undefined,
+          },
+          Object {
+            "doScore": [Function],
+            "name": "Large Straight",
+            "score": undefined,
+          },
+          Object {
+            "doScore": [Function],
+            "name": "Yahtzee",
+            "score": undefined,
+          },
+          Object {
+            "doScore": [Function],
+            "name": "Chance",
+            "score": undefined,
+          },
+        ]
+      }
+    />
+  </section>
+  <h3
+    className="ScoreTable-total"
+  >
+     Total Score: 
+    0
+  </h3>
+</div>
+`;
